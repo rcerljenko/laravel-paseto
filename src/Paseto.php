@@ -25,6 +25,9 @@ class Paseto
 
 	public function encodeToken(object $user, array $config = [])
 	{
+		$nbf = $config['valid_from'] ?? $user->getJwtValidFromTime();
+		$exp = $config['valid_until'] ?? $user->getJwtValidUntilTime();
+
 		$builder = new Builder;
 
 		return $builder
@@ -34,10 +37,10 @@ class Paseto
 			->setIssuer(config('paseto.issuer'))
 			->setAudience(config('paseto.audience'))
 			->setIssuedAt()
-			->setNotBefore(new DateTime($config['valid_from'] ?? $user->getJwtValidFromTime()))
-			->setExpiration(new DateTime($config['valid_until'] ?? $user->getJwtValidUntilTime()))
+			->setNotBefore($nbf ? new DateTime($nbf) : null)
+			->setExpiration($exp ? new DateTime($exp) : null)
 			->setJti($config['id'] ?? $user->getJwtId())
-			->setClaims($config['claims'] ?? $user->getJwtCustomClaims())
+			->setClaims(array_replace(config('paseto.claims'), $config['claims'] ?? $user->getJwtCustomClaims()))
 			->toString();
 	}
 
