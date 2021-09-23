@@ -37,8 +37,8 @@ class Paseto
 			->setIssuer(config('paseto.issuer'))
 			->setAudience(config('paseto.audience'))
 			->setIssuedAt()
-			->setNotBefore($nbf ? new DateTime($nbf) : null)
-			->setExpiration($exp ? new DateTime($exp) : null)
+			->setNotBefore($nbf ? new DateTime($nbf->format('Y-m-d H:i:s')) : null)
+			->setExpiration($exp ? new DateTime($exp->format('Y-m-d H:i:s')) : null)
 			->setJti($config['id'] ?? $user->getJwtId())
 			->setClaims(array_replace(config('paseto.claims'), $config['claims'] ?? $user->getJwtCustomClaims()))
 			->toString();
