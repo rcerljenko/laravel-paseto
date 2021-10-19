@@ -78,6 +78,8 @@ This package provides simple configuration via `config/paseto.php` file after yo
 
 - `secret-key` - Secret key to use when encoding / decoding tokens. It has to be a 32 byte long random string. Remember, if you change this key all active PASETO tokens will be invalidated.
 - `expiration` - Default token expiration time in minutes. You can set it to `null` and the tokens will never expire.
+- `issuer` - Token issuer claim.
+- `audience` - Token audience claim.
 - `claims` - Default claims that will be applied to all tokens (besides the required ones needed for decoding and validation).
 
 This was global configuration for all tokens. Besides that, library provides a local per-model configuration via `HasPaseto` trait helper methods.
