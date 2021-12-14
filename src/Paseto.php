@@ -6,6 +6,7 @@ use DateTime;
 use ParagonIE\Paseto\Parser;
 use ParagonIE\Paseto\Builder;
 use ParagonIE\Paseto\Purpose;
+use ParagonIE\Paseto\JsonToken;
 use ParagonIE\Paseto\Rules\ValidAt;
 use ParagonIE\Paseto\Rules\IssuedBy;
 use ParagonIE\Paseto\Rules\NotExpired;
@@ -23,7 +24,7 @@ class Paseto
 		$this->sharedKey = new SymmetricKey($secretKey ?? config('paseto.secret-key'));
 	}
 
-	public function encodeToken(object $user, array $config = [])
+	public function encodeToken(object $user, array $config = []): string
 	{
 		$nbf = $config['valid_from'] ?? $user->getJwtValidFromTime();
 		$exp = $config['valid_until'] ?? $user->getJwtValidUntilTime();
@@ -44,7 +45,7 @@ class Paseto
 			->toString();
 	}
 
-	public function decodeToken(string $token)
+	public function decodeToken(string $token): JsonToken
 	{
 		$parser = new Parser;
 

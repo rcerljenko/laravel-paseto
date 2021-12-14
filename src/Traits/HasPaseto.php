@@ -1,33 +1,35 @@
 <?php
 
-namespace RCerljenko\LaravelJwt\Traits;
+namespace RCerljenko\LaravelPaseto\Traits;
 
+use Illuminate\Support\Carbon;
 use RCerljenko\LaravelPaseto\Paseto;
 
 trait HasPaseto
 {
-	public function getJwtId()
+	public function getJwtId(): string
 	{
 		return $this->getKey();
 	}
 
-	public function getJwtValidFromTime()
+	public function getJwtValidFromTime(): ?Carbon
 	{
+		return null;
 	}
 
-	public function getJwtValidUntilTime()
+	public function getJwtValidUntilTime(): ?Carbon
 	{
 		$expiration = config('paseto.expiration');
 
 		return $expiration ? now()->addMinutes($expiration) : null;
 	}
 
-	public function getJwtCustomClaims()
+	public function getJwtCustomClaims(): array
 	{
 		return [];
 	}
 
-	public function token(array $config = [])
+	public function token(array $config = []): string
 	{
 		$paseto = new Paseto;
 
