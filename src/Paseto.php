@@ -17,7 +17,7 @@ use ParagonIE\Paseto\ProtocolCollection;
 
 class Paseto
 {
-	private $sharedKey;
+	private SymmetricKey $sharedKey;
 
 	public function __construct(?string $secretKey = null)
 	{
