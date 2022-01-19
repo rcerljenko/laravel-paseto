@@ -53,8 +53,8 @@ class Paseto
 			->setKey($this->sharedKey)
 			->setAllowedVersions(ProtocolCollection::v4())
 			->setPurpose(Purpose::local())
-			->addRule(new IssuedBy(config('app.issuer')))
-			->addRule(new ForAudience(config('app.audience')))
+			->addRule(new IssuedBy(config('paseto.issuer')))
+			->addRule(new ForAudience(config('paseto.audience')))
 			->addRule(new ValidAt)
 			->addRule(new NotExpired)
 			->parse($token);
