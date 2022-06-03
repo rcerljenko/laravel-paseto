@@ -2,6 +2,7 @@
 
 namespace RCerljenko\LaravelPaseto;
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use RCerljenko\LaravelPaseto\Guard\PasetoGuard;
 
@@ -28,7 +29,7 @@ class LaravelPasetoServiceProvider extends ServiceProvider
 
 	private function extendAuthGuard(): void
 	{
-		auth()->extend('paseto', function ($app, $name, array $config) {
+		auth()->extend('paseto', function (Application $app, string $name, array $config): PasetoGuard {
 			return new PasetoGuard(auth()->createUserProvider($config['provider']));
 		});
 	}

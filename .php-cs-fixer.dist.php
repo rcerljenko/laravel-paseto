@@ -6,10 +6,10 @@ use PhpCsFixer\Finder;
 $finder = Finder::create()
 	->in([
 		__DIR__ . '/config',
-		__DIR__ . '/src'
+		__DIR__ . '/src',
 	])
 	->append([
-		__FILE__
+		__FILE__,
 	])
 	->name('*.php');
 
@@ -22,6 +22,7 @@ return $config->setFinder($finder)
 		'align_multiline_comment' => ['comment_type' => 'all_multiline'],
 		'array_indentation' => true,
 		'array_syntax' => true,
+		'binary_operator_spaces' => true,
 		'blank_line_after_namespace' => true,
 		'braces' => ['allow_single_line_closure' => true, 'allow_single_line_anonymous_class_with_empty_body' => true],
 		'cast_spaces' => ['space' => 'single'],
@@ -52,7 +53,7 @@ return $config->setFinder($finder)
 		'method_argument_space' => ['on_multiline' => 'ensure_single_line'],
 		'native_function_casing' => true,
 		'native_function_type_declaration_casing' => true,
-		'new_with_braces' => false,
+		'new_with_braces' => ['named_class' => false, 'anonymous_class' => false],
 		'no_blank_lines_after_class_opening' => true,
 		'no_closing_tag' => true,
 		'no_empty_comment' => true,
@@ -69,6 +70,7 @@ return $config->setFinder($finder)
 		'no_spaces_inside_parenthesis' => true,
 		'no_trailing_comma_in_list_call' => true,
 		'no_trailing_comma_in_singleline_array' => true,
+		'no_trailing_comma_in_singleline_function_call' => true,
 		'no_trailing_whitespace' => true,
 		'no_trailing_whitespace_in_comment' => true,
 		'no_unneeded_control_parentheses' => true,
@@ -128,6 +130,9 @@ return $config->setFinder($finder)
 		'no_space_around_double_colon' => true,
 		'no_unneeded_import_alias' => true,
 		'class_reference_name_casing' => true,
+		'single_line_comment_spacing' => true,
+		'date_time_create_from_format_call' => true,
+		'trailing_comma_in_multiline' => true,
 
 		'no_blank_lines_after_phpdoc' => true,
 		'no_empty_phpdoc' => true,
@@ -181,6 +186,6 @@ return $config->setFinder($finder)
 				'while',
 				'yield',
 				'yield_from',
-			]
+			],
 		],
 	]);

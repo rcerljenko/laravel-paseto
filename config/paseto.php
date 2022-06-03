@@ -57,5 +57,5 @@ return [
 
 	'claims' => [
 		// 'foo' => 'bar'
-	]
+	],
 ];
