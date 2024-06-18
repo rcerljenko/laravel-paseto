@@ -24,15 +24,15 @@ php artisan vendor:publish --provider="RCerljenko\LaravelPaseto\LaravelPasetoSer
 // config/auth.php
 
 'guards' => [
-	'web' => [
-		'driver' => 'session',
-		'provider' => 'users',
-	],
+ 'web' => [
+  'driver' => 'session',
+  'provider' => 'users',
+ ],
 
-	'api' => [
-		'driver' => 'paseto',
-		'provider' => 'users',
-	],
+ 'api' => [
+  'driver' => 'paseto',
+  'provider' => 'users',
+ ],
 ],
 ```
 
@@ -44,7 +44,7 @@ php artisan vendor:publish --provider="RCerljenko\LaravelPaseto\LaravelPasetoSer
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function () {
-	// PASETO protected routes
+ // PASETO protected routes
 });
 ```
 
@@ -59,7 +59,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-	use Notifiable, HasPaseto;
+ use Notifiable, HasPaseto;
 }
 ```
 
@@ -93,13 +93,13 @@ You can also use configuration directly on the `token()` method which then overr
 
 ```php
 $user->token([
-	'id' => $user->email,
-	'valid_from' => now()->addHour(),
-	'valid_until' => now()->addDay(),
-	'claims' => [
-		'extra1' => 'foo',
-		'extra2' => 'bar'
-	]
+ 'id' => $user->email,
+ 'valid_from' => now()->addHour(),
+ 'valid_until' => now()->addDay(),
+ 'claims' => [
+  'extra1' => 'foo',
+  'extra2' => 'bar'
+ ]
 ]);
 ```
 
